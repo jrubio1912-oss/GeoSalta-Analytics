@@ -1,8 +1,13 @@
 import streamlit as st
 from streamlit_folium import st_folium
 
-from utils.mapa import crear_mapa
 from utils.estilos import cargar_estilos
+from utils.mapa import crear_mapa
+
+from components.header import mostrar_header
+from components.sidebar import mostrar_sidebar
+from components.panel import mostrar_panel
+
 
 st.set_page_config(
     page_title="GeoSalta Analytics",
@@ -12,49 +17,11 @@ st.set_page_config(
 
 cargar_estilos()
 
-# ---------- Header ----------
+mostrar_header()
 
-st.markdown("""
-# 🗺️ GeoSalta Analytics
-### Plataforma Inteligente de Análisis Territorial para la Provincia de Salta
-""")
+mostrar_sidebar()
 
-st.divider()
-
-# ---------- Sidebar ----------
-
-with st.sidebar:
-
-    st.header("⚙️ Filtros")
-
-    indicador = st.selectbox(
-        "Indicador",
-        [
-            "Población",
-            "Empleo",
-            "Turismo",
-            "Salud",
-            "Educación"
-        ]
-    )
-
-    departamento = st.selectbox(
-        "Departamento",
-        [
-            "Todos"
-        ]
-    )
-
-    municipio = st.selectbox(
-        "Municipio",
-        [
-            "Todos"
-        ]
-    )
-
-# ---------- Layout ----------
-
-col_mapa, col_info = st.columns([4, 1])
+col_mapa, col_panel = st.columns([4, 1])
 
 with col_mapa:
 
@@ -62,14 +29,10 @@ with col_mapa:
 
     st_folium(
         mapa,
+        height=700,
         width=None,
-        height=700
     )
 
-with col_info:
+with col_panel:
 
-    st.subheader("Información")
-
-    st.info(
-        "Seleccione un departamento en el mapa."
-    )
+    mostrar_panel()
