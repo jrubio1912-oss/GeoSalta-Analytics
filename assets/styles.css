@@ -1,0 +1,59 @@
+/* ===========================
+   GeoSalta Analytics Theme
+   =========================== */
+
+/* Fondo principal */
+.stApp {
+    background-color: #F5F7FA;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #FFFFFF;
+    border-right: 1px solid #DDE3EA;
+}
+
+/* Títulos */
+h1 {
+    color: #2E7D32 !important;
+    font-weight: 700;
+}
+
+h2, h3 {
+    color: #263238 !important;
+}
+
+/* Separadores */
+hr {
+    border-color: #DDE3EA;
+}
+
+/* Selectbox */
+.stSelectbox {
+    margin-bottom: 15px;
+}
+
+/* Tarjetas (st.info, st.success, etc.) */
+div[data-testid="stAlert"] {
+    border-radius: 12px;
+}
+
+/* Métricas */
+div[data-testid="metric-container"] {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #DDE3EA;
+}
+
+/* Botones */
+.stButton > button {
+    border-radius: 10px;
+    border: none;
+    background-color: #2E7D32;
+    color: white;
+}
+
+.stButton > button:hover {
+    background-color: #43A047;
+}
