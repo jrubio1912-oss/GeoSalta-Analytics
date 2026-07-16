@@ -39,3 +39,48 @@ def obtener_lista_departamentos():
     departamentos.sort()
 
     return departamentos
+
+
+def obtener_lista_municipios():
+    """
+    Devuelve una lista ordenada de todos los municipios.
+    """
+
+    geojson = leer_municipios()
+
+    municipios = []
+
+    for feature in geojson["features"]:
+
+        nombre = feature["properties"]["nombre"]
+
+        municipios.append(nombre)
+
+    municipios = sorted(set(municipios))
+
+    return municipios
+
+
+def obtener_municipios_por_departamento(nombre_departamento):
+    """
+    Devuelve la lista de municipios de un departamento.
+    """
+
+    if nombre_departamento == "Todos":
+        return obtener_lista_municipios()
+
+    geojson = leer_municipios()
+
+    municipios = []
+
+    for feature in geojson["features"]:
+
+        propiedades = feature["properties"]
+
+        departamento = propiedades["departamento"]
+        municipio = propiedades["nombre"]
+
+        if departamento.upper() == nombre_departamento.upper():
+            municipios.append(municipio.title())
+
+    return sorted(set(municipios))

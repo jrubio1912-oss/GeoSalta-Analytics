@@ -27,12 +27,26 @@ with col_mapa:
 
     mapa = crear_mapa()
 
-    st_folium(
+    mapa_interactivo = st_folium(
         mapa,
         height=MAP_HEIGHT,
-        width=None,
+        width=None
     )
+
+    departamento_seleccionado = None
+
+    if mapa_interactivo.get("last_active_drawing"):
+
+        departamento_seleccionado = (
+            mapa_interactivo["last_active_drawing"]
+            ["properties"]
+            ["nombre"]
+            .title()
+        )
+
+
+st.write(mapa_interactivo)
 
 with col_panel:
 
-    mostrar_panel()
+    mostrar_panel(departamento_seleccionado)
