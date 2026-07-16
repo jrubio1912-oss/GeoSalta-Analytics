@@ -7,10 +7,10 @@ from utils.mapa import crear_mapa
 from components.header import mostrar_header
 from components.sidebar import mostrar_sidebar
 from components.panel import mostrar_panel
-
+from config.config import *
 
 st.set_page_config(
-    page_title="GeoSalta Analytics",
+    page_title=APP_TITLE,
     page_icon="🗺️",
     layout="wide"
 )
@@ -29,7 +29,7 @@ with col_mapa:
 
     st_folium(
         mapa,
-        height=700,
+        height=MAP_HEIGHT,
         width=None,
     )
 

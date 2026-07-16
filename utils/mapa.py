@@ -1,19 +1,19 @@
 import json
 import folium
-
+from config.config import *
 
 def crear_mapa():
 
     # Centro aproximado de la provincia
     mapa = folium.Map(
-        location=[-24.8, -65.4],
-        zoom_start=7,
-        tiles="CartoDB positron"
+        location=MAP_CENTER,
+        zoom_start=MAP_ZOOM,
+        tiles=MAP_TILES
     )
 
     # Leer GeoJSON
     with open(
-        "data/geojson/salta_departamentos_limpio.geojson",
+        GEOJSON_DEPARTAMENTOS,
         encoding="utf-8"
     ) as f:
 
@@ -21,10 +21,10 @@ def crear_mapa():
 
     # Estilo
     estilo = {
-        "fillColor": "#4CAF50",
-        "color": "#1B5E20",
-        "weight": 2,
-        "fillOpacity": 0.5,
+    "fillColor": COLOR_PRIMARY,
+    "color": COLOR_BORDER,
+    "weight": 2,
+    "fillOpacity": 0.5,
     }
 
     folium.GeoJson(
