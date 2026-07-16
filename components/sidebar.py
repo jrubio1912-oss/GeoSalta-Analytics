@@ -1,4 +1,5 @@
 import streamlit as st
+from utils.datos import obtener_lista_departamentos
 
 
 def mostrar_sidebar():
@@ -18,13 +19,13 @@ def mostrar_sidebar():
             ]
         )
 
+        departamentos = ["Todos"] + obtener_lista_departamentos()
+
         departamento = st.selectbox(
             "Departamento",
-            [
-                "Todos"
-            ]
+            departamentos
         )
-
+        
         municipio = st.selectbox(
             "Municipio",
             [
