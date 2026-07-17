@@ -1,21 +1,34 @@
 import streamlit as st
+from utils.datos import obtener_info_departamento, contar_municipios
 
 
 def mostrar_panel(departamento=None):
 
     st.subheader("📍 Información")
 
-    st.metric(
-        "Departamento",
-        departamento if departamento else "-"
-    )
+    if departamento is None:
+
+        st.info("Seleccione un departamento en el mapa.")
+
+        return
+
+    info = obtener_info_departamento(departamento)
+
+    if info is None:
+
+        st.error("No se encontró información.")
+
+        return
+
+    st.metric("Departamento", info["nombre"])
+
+    st.metric("Cabecera", info["cabecera"])
+
+    st.metric("Código", info["codigo"])
 
     st.metric(
-        "Habitantes",
-        "-"
+        "Municipios",
+        contar_municipios(info["nombre"])
     )
 
-    st.metric(
-        "Superficie",
-        "-"
-    )
+

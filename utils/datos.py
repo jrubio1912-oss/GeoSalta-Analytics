@@ -84,3 +84,36 @@ def obtener_municipios_por_departamento(nombre_departamento):
             municipios.append(municipio.title())
 
     return sorted(set(municipios))
+
+
+def obtener_info_departamento(nombre_departamento):
+    """
+    Devuelve toda la información de un departamento.
+    """
+
+    geojson = leer_departamentos()
+
+    for feature in geojson["features"]:
+
+        propiedades = feature["properties"]
+
+        if propiedades["nombre"].upper() == nombre_departamento.upper():
+
+            return {
+                "nombre": propiedades["nombre"].title(),
+                "cabecera": propiedades["cabecera"].title(),
+                "codigo": propiedades["codigo"],
+                "numero": propiedades["nro_departamento"],
+            }
+
+    return None
+
+
+def contar_municipios(nombre_departamento):
+    """
+    Devuelve la cantidad de municipios del departamento.
+    """
+
+    municipios = obtener_municipios_por_departamento(nombre_departamento)
+
+    return len(municipios)
