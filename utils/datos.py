@@ -117,3 +117,11 @@ def contar_municipios(nombre_departamento):
     municipios = obtener_municipios_por_departamento(nombre_departamento)
 
     return len(municipios)
+
+
+def listar_municipios(nombre_departamento):
+    """
+    Devuelve la lista de municipios de un departamento.
+    """
+
+    return obtener_municipios_por_departamento(nombre_departamento)

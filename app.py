@@ -21,11 +21,14 @@ mostrar_header()
 
 mostrar_sidebar()
 
+if "departamento_seleccionado" not in st.session_state:
+    st.session_state.departamento_seleccionado = None
+
 col_mapa, col_panel = st.columns([4, 1])
 
 with col_mapa:
 
-    mapa = crear_mapa()
+    mapa = crear_mapa(st.session_state.departamento_seleccionado)
 
     mapa_interactivo = st_folium(
         mapa,
@@ -33,20 +36,21 @@ with col_mapa:
         width=None
     )
 
-    departamento_seleccionado = None
+    if (
+        mapa_interactivo
+        and mapa_interactivo.get("last_active_drawing")
+        and mapa_interactivo["last_active_drawing"].get("properties")
+):
 
-    if mapa_interactivo.get("last_active_drawing"):
-
-        departamento_seleccionado = (
-            mapa_interactivo["last_active_drawing"]
-            ["properties"]
-            ["nombre"]
-            .title()
+        nuevo_departamento = (
+            mapa_interactivo["last_active_drawing"]["properties"]["nombre"].title()
         )
 
+        if nuevo_departamento != st.session_state.departamento_seleccionado:
+            st.session_state.departamento_seleccionado = nuevo_departamento
+            st.rerun()
 
-st.write(mapa_interactivo)
 
 with col_panel:
 
-    mostrar_panel(departamento_seleccionado)
+    mostrar_panel(st.session_state.departamento_seleccionado)

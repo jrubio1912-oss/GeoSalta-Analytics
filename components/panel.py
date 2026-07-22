@@ -1,5 +1,9 @@
 import streamlit as st
-from utils.datos import obtener_info_departamento, contar_municipios
+from utils.datos import (
+    obtener_info_departamento,
+    contar_municipios,
+    listar_municipios
+)
 
 
 def mostrar_panel(departamento=None):
@@ -31,4 +35,9 @@ def mostrar_panel(departamento=None):
         contar_municipios(info["nombre"])
     )
 
+    municipios = listar_municipios(info["nombre"])
+    st.markdown("### 🏘 Municipios")
+
+    for municipio in municipios:
+        st.write(f"• {municipio}")
 
