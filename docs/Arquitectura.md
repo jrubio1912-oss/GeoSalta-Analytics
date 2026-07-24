@@ -89,19 +89,91 @@ Construcción del menú lateral.
 
 ---
 
-## Flujo de datos
+## Flujo de información
 
 ```
-GeoJSON
-        │
-        ▼
- mapa.py
-        │
-        ▼
- Folium
-        │
-        ▼
- Streamlit
+Usuario
+
+     │
+     ▼
+
+Mapa Interactivo (Folium)
+
+     │
+     ▼
+
+streamlit-folium
+
+     │
+     ▼
+
+Session State
+
+     │
+     ▼
+
+Panel de Información
+
+     │
+     ▼
+
+Datos (GeoJSON)
+
+     │
+     ▼
+
+Interfaz actualizada
 ```
 
 Posteriormente se incorporará la lectura de archivos Excel para representar indicadores sobre el mapa.
+
+
+## Estructura del proyecto
+
+```
+GeoSalta-Analytics/
+│
+├── app.py
+│
+├── components/
+│   ├── header.py
+│   ├── sidebar.py
+│   └── panel.py
+│
+├── config/
+│   └── config.py
+│
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   └── geojson/
+│
+├── docs/
+│
+├── utils/
+│   ├── mapa.py
+│   ├── datos.py
+│   ├── estilos.py
+│   └── indicadores.py
+│
+└── assets/
+```
+
+
+## Evolución prevista
+
+En las próximas versiones se incorporarán nuevas fuentes de datos para ampliar las capacidades analíticas de la plataforma.
+
+```
+GeoJSON
+      │
+Excel
+      │
+CSV
+      │
+SQLite
+      │
+PostgreSQL + PostGIS (futuro)
+```
+
+Esta arquitectura permitirá incorporar indicadores demográficos, económicos, financieros y sociales sin modificar la estructura principal de la aplicación.
